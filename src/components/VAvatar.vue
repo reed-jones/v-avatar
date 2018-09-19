@@ -8,39 +8,39 @@ div
 
 <script>
 export default {
-  name: 'v-avatar',
+  name: "v-avatar",
   props: {
     name: {
       type: String,
-      default: ''
+      default: ""
     },
     username: {
       type: String,
-      default: ''
+      default: ""
     },
     email: {
       type: String,
-      default: ''
+      default: ""
     },
     alt: {
       type: String,
-      default: ''
+      default: ""
     },
     mode: {
       type: String,
-      default: 'initials' // initials, adorable, robohash, gravatar
+      default: "initials" // initials, adorable, robohash, gravatar
     },
     hash: {
       type: String,
-      default: ''
+      default: ""
     },
     uiAvatarOptions: {
       type: Object,
       default: _ => ({
-        background: '0D8ABC', // notice no '#'
-        color: 'fff', // notice no '#'
-        size: 250, // default = 64, available 16 - 512
-        fontSize: 0.5, // default 0.5, available: 0.1 - 1
+        background: "0D8ABC", // notice no '#'
+        color: "fff", // notice no '#'
+        size: 250, // reference ony, use size prop instead. default = 64, available 16 - 512,
+        "font-size": 0.5, // default 0.5, available: 0.1 - 1
         length: 2, // number of chars
         rounded: true,
         uppercase: true
@@ -49,19 +49,19 @@ export default {
     robohashOptions: {
       type: Object,
       default: _ => ({
-        bgset: ['bg1', 'bg2', false], // pick on at random (or none)... none
-        sets: ['set1','set2','set3', 'set4'],
-        set: 'any', // overrides above sets setting. pick on or th other
-        size: '250x250', // for reference only. use size prop instead
-        gravatar: false, // ?gravatar=yes for email, ?gravatar=hashed for has
-      }),
+        bgset: ["bg1", "bg2", false], // pick on at random (or none)... none
+        sets: ["set1", "set2", "set3", "set4"],
+        set: "any", // overrides above sets setting. pick one or the other
+        size: "250x250", // for reference only. use size prop instead
+        gravatar: false // ?gravatar=yes for email, ?gravatar=hashed for has
+      })
     },
     gravatarOptions: {
       type: Object,
       default: _ => ({
-        fallback: 'identicon', // ?d=${fallback} mp, identicon, monsterid, wavatar, retro, robohash, blank
-        size: 250, // ?s=${size}
-        forceFallback: 'n' // ?f=y defaults to no
+        d: "identicon", // default/fallback: ?d=${fallback} mp, identicon, monsterid, wavatar, retro, robohash, blank
+        size: 250, // for reference only. use size prop instead. ?s=${size}
+        f: "n" // force-default/fallback: ?f=y defaults to no
       })
     },
     size: {
@@ -72,24 +72,47 @@ export default {
   computed: {
     endpoints() {
       return {
-        initials: `https://ui-avatars.com/api/?name=${(this.identifier).replace(' ', '+')}&size=${this.size}`,
-        robohash: `https://robohash.org/${this.identifier}?sets=${this.robohashOptions.sets.join(',')}&size=${this.size}x${this.size}`,
+        initials: `https://ui-avatars.com/api/?name=${this.identifier.replace(" ","+")}&size=${this.size}&${this.uiAvatarQuery}`,
+        robohash: `https://robohash.org/${this.identifier}?&size=${this.size}x${this.size}&${this.robohashQuery}`,
         adorable: `https://api.adorable.io/avatars/${this.size}/${this.identifier}`,
-        gravatar: `https://www.gravatar.com/avatar/${this.getHash}?s=${this.size}&d=${this.gravatarOptions.fallback}`
-
+        gravatar: `https://www.gravatar.com/avatar/${this.getHash}?s=${this.size}&d=${this.gravatarOptions.d}`
+      };
+    },
+    uiAvatarQuery() {
+      return Object.entries(this.uiAvatarOptions)
+        .filter(e => e[1] !== null && e[0] !== "size")
+        .map(e => e.join("="))
+        .join("&");
+    },
+    robohashQuery() {
+      let { bgset, sets, set, size, gravatar = null } = this.robohashOptions;
+      let query = [];
+      if (sets.length) {
+        query.push(`sets=${Array.isArray(sets) ? sets.join(",") : sets}`);
       }
+      if (bgset.length) {
+        query.push(`bgset=${Array.isArray(bgset) ? bgset.join(",") : bgset}`);
+      }
+      if (!!set) {
+        query.push(`set=${set}`);
+      }
+      if (!!gravatar) {
+        query.push(`gravatar=${gravatar}`);
+      }
+
+      return query.join("&");
     },
     imageSrc() {
-      return this.src || this.endpoints[this.mode]
+      return this.src || this.endpoints[this.mode];
     },
     identifier() {
-      return this.name || this.username || this.email
+      return this.name || this.username || this.email;
     },
     getHash() {
-      return this.hash || this.md5(this.email.trim().toLowerCase())
+      return this.hash || this.md5(this.email.trim().toLowerCase()) || '';
     },
     altText() {
-      return this.alt || this.name || this.username || this.email
+      return this.alt || this.name || this.username || this.email;
     }
   },
   methods: {
