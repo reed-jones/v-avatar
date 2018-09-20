@@ -2,6 +2,16 @@
   "name": "v-avatar",
   "main": "./dist/v-avatar.common.js",
   "version": "0.1.0",
+  "license": "ISC",
+  "description": "Easily add random avatars to your users profiles.",
+  "keywords": [
+    "vue",
+    "vuejs",
+    "avatar",
+    "gravatar",
+    "robohash"
+  ],
+  "author": "Reed Jones <reedjones@reedjones.com>",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
