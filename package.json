@@ -1,13 +1,19 @@
 {
   "name": "v-avatar",
+  "main": "./dist/v-avatar.common.js",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "bundle": "vue-cli-service build --target lib --name v-avatar ./src/components/index.js"
   },
   "dependencies": {
     "vue": "^2.5.17"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reed-jones/v-avatar.git"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.0.3",
@@ -17,5 +23,12 @@
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
     "vue-template-compiler": "^2.5.17"
-  }
+  },
+  "files": [
+    "dist/*",
+    "src/*",
+    "public/*",
+    "*.json",
+    "*.js"
+  ]
 }

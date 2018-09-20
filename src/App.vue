@@ -1,10 +1,12 @@
 <template>
   <div id="app">
     <v-avatar
-      mode="robohash"
-      :size='128'
-      name='Reed Jones'
+      mode='robohash'
+      :size='512'
+      :robohashOptions='{sets: "set4", bgset: "bg2"}'
+      username='fuzzykitten'
        />
+      <!-- name='Reed Jones' -->
   </div>
 </template>
 
