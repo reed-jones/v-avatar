@@ -8,7 +8,7 @@ div
 
 <script>
 export default {
-  name: 'v-avatar',
+  name: 'VAvatar',
   props: {
     name: {
       type: String,
@@ -29,7 +29,7 @@ export default {
     mode: {
       type: String,
       default: 'initials',
-      validator: val => ['initials','adorable', 'robohash', 'gravatar'].includes(val)
+      validator: val => ['initials', 'adorable', 'robohash', 'gravatar'].includes(val)
     },
     hash: {
       type: String,

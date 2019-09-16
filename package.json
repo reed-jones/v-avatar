@@ -1,7 +1,7 @@
 {
-  "name": "v-avatar",
-  "main": "./dist/v-avatar.common.js",
-  "version": "0.1.1",
+  "name": "@j0nz/v-avatar",
+  "main": "dist/v-avatar.umd.min.js",
+  "version": "0.1.2",
   "license": "ISC",
   "description": "Easily add random avatars to your users profiles.",
   "keywords": [
@@ -18,20 +18,20 @@
     "bundle": "vue-cli-service build --target lib --name v-avatar ./src/components/index.js"
   },
   "dependencies": {
-    "vue": "^2.5.17"
+    "vue": "^2.6.10"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/reed-jones/v-avatar.git"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.0.3",
-    "@vue/cli-service": "^3.0.3",
-    "pug": "^2.0.3",
+    "@vue/cli-plugin-babel": "^3.11.0",
+    "@vue/cli-service": "^3.11.0",
+    "pug": "^2.0.4",
     "pug-plain-loader": "^1.0.0",
-    "stylus": "^0.54.5",
+    "stylus": "^0.54.7",
     "stylus-loader": "^3.0.2",
-    "vue-template-compiler": "^2.5.17"
+    "vue-template-compiler": "^2.6.10"
   },
   "files": [
     "dist/*",
