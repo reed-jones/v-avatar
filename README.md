@@ -3,12 +3,12 @@ Easy plug and play user avatars. Current providers include [RoboHash](https://ro
 
 ## Project installation
 ```sh
-yarn add v-avatar
+yarn add @j0nz/v-avatar
 ```
 
 ```js
 // main.js
-import VAvatar from 'v-avatar'
+import VAvatar from '@j0nz/v-avatar'
 Vue.use(VAvatar)
 ```
 
@@ -52,7 +52,7 @@ Vue.use(VAvatar)
     rounded: true,          // rounded ot square image
     uppercase: true,        // casing of letters
 }
-``` 
+```
 | Prop | Type | Default | Description |
 |--|--|--|--|
 | robohashOptions | Object | see below | Options applied when mode is set to _**robohash**_
@@ -73,5 +73,5 @@ Vue.use(VAvatar)
     d: 'identicon', // default/fallback: pick one of [ mp, identicon, monsterid, wavatar, retro, robohash, blank ]
     f: null,        // force-default/fallback: set to 'y' if desired
     r: 'g',         // gravatar rating: g, pg, r, x
-      }
+}
 ```
